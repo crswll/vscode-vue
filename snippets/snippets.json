@@ -1,92 +1,588 @@
 {
-	"add": {
-		"prefix": "add",
-		"body": "${1:vm}.$add(${2:key}, ${3:value})\n",
-		"description": "",
-		"scope": "source.js"
+  // Global Config
+
+  "Vue.config.silent": {
+    "prefix": "Vue.config.silent",
+    "body": "Vue.config.silent = ${Boolean}\n$0"
+  },
+  "Vue.config.devtools": {
+    "prefix": "Vue.config.devtools",
+    "body": "Vue.config.devtools = ${Boolean}\n$0"
+  },
+  "Vue.config.errorHandler": {
+    "prefix": "Vue.config.errorHandler",
+    "body": "Vue.config.errorHandler = (err, vm) => {\n\t${console.log(err, vm)}\n}"
+  },
+  "Vue.config.ignoredElements": {
+    "prefix": "Vue.config.ignoredElements",
+    "body": "Vue.config.ignoredElements = [\n\t'web-component-1'\n\t'web-component-2'\n]\n$0"
+  },
+  "Vue.config.keyCodes": {
+    "prefix": "Vue.config.keyCodes",
+    "body": "Vue.config.keyCodes = {\n\t${1:up: [38, 87]}\n}\n$0"
+  },
+
+
+  // Gloabl API
+
+  "Vue.extend": {
+    "prefix": "Vue.extend",
+    "body": "Vue.extend(${Object})\n$0"
+  },
+  "Vue.nextTick": {
+    "prefix": "Vue.nextTick",
+    "body": "Vue.nextTick(${Function})\n$0"
+  },
+  "Vue.set": {
+    "prefix": "Vue.set",
+    "body": "Vue.set(${someObject}, ${'someKeyName'}, ${someKeyValue})\n$0"
+  },
+  "Vue.delete": {
+    "prefix": "Vue.delete",
+    "body": "Vue.delete(${this.someObject}, ${'someKeyName'})\n$0"
+  },
+  "Vue.directive": {
+    "prefix": "Vue.directive",
+    "body": "Vue.directive(${'directiveName'}, {\n\tbind (el, binding) {}, \n\tinserted (el, binding) {}, \n\tupdated (el, binding) {}, \n\tcomponentUpdated (el, binding) {}, \n\tunbind (el, binding) {},\n})\n$0",
+		"description": "https://vuejs.org/v2/api/#Vue-directive"
+  },
+  "Vue.filter": {
+    "prefix": "Vue.filter",
+    "body": "Vue.filter(${'filterName'}, (value) => {\n\treturn value + '!'\n})\n$0"
+  },
+  "Vue.component": {
+    "prefix": "Vue.component",
+    "body": "Vue.component(${'componentName'}, {\n\tname: ${'componentName'},\n\t$1\n})\n$0"
+  },
+  "Vue.transition": {
+    "prefix": "Vue.transition",
+    "body": [
+      "Vue.transition(${'transitionName'}, {",
+        "\tbeforeEnter (el) {",
+          "\t\t//...",
+        "\t},",
+        "\tenter (el/*, doneCallback*/) {",
+          "\t\t//...",
+        "\t},",
+        "\tafterEnter (el) {",
+          "\t\t//...",
+        "\t},",
+        "\tenterCancelled (el) {",
+          "\t\t//...",
+        "\t},",
+        "\tbeforeLeave (el) {",
+          "\t\t//...",
+        "\t},",
+        "\tleave (el/*, doneCallback*/) {",
+          "\t\t//...",
+        "\t},",
+        "\tafterLeave (el) {",
+          "\t\t//...",
+        "\t},",
+        "\tleaveCancelled (el) {",
+          "\t\t//...",
+        "\t}",
+      "})\n"
+    ]
+  },
+  "Vue.use": {
+    "prefix": "Vue.use",
+    "body": "Vue.use(${Plugin}, {\n\t${...}\n})\n$0"
+  },
+  "Vue.mixin": {
+    "prefix": "Vue.mixin",
+    "body": "Vue.mixin({\n\t${// ...}\n})\n$0"
+  },
+
+
+  // Options / Data
+
+  "data": {
+    "prefix": "options.data.data",
+    "body": [
+      "data () {",
+        "\treturn {",
+          "\t\t$1",
+        "\t}",
+      "},"
+    ]
+  },
+  "props": {
+    "prefix": "options.data.props",
+    "body": [
+      "props: {",
+        "\t$1",
+      "},"
+    ]
+  },
+  "propsData": {
+    "prefix": "options.data.propsData",
+    "body": [
+      "propsData: {",
+        "\t$1",
+      "},"
+    ]
+  },
+  "computed": {
+    "prefix": "options.data.computed",
+    "body": [
+      "computed: {",
+        "\t$1",
+      "},"
+    ]
+  },
+  "methods": {
+    "prefix": "options.data.methods",
+    "body": [
+      "methods: {",
+        "\t$1",
+      "},"
+    ]
+  },
+  "watch": {
+    "prefix": "options.data.watch",
+    "body": [
+      "watch: {",
+        "\t$1",
+      "},"
+    ]
+  },
+
+
+  // Options / DOM
+
+  "el": {
+    "prefix": "options.dom.el",
+    "body": "el: ${selector|HTMLElement},$0"
+  },
+  "template": {
+    "prefix": "options.dom.template",
+    "body": "template: ${templateString},$0"
+  },
+  "render": {
+    "prefix": "options.dom.render",
+    "body": [
+      "render: (createElement) => {",
+        "\t.// ..}",
+      "},"
+    ]
+  },
+
+  
+  // Options / Lifecycle Hooks
+
+  "lifecycle.beforeCreate": {
+    "prefix": "options.lifecycle.beforeCreate",
+    "body": [
+      "beforeCreate () {",
+        "\t$0",
+      "},"
+    ]
+  },
+  "lifecycle.created": {
+    "prefix": "options.lifecycle.created",
+    "body": [
+      "created () {",
+        "\t$0",
+      "},"
+    ]
+  },
+  "lifecycle.beforeMount": {
+    "prefix": "options.lifecycle.beforeMount",
+    "body": [
+      "beforeMount () {",
+        "\t$0",
+      "},"
+    ]
+  },
+  "lifecycle.mounted": {
+    "prefix": "options.lifecycle.mounted",
+    "body": [
+      "mounted () {",
+        "\t$0",
+      "},"
+    ]
+  },
+  "lifecycle.beforeUpdate": {
+    "prefix": "options.lifecycle.beforeUpdate",
+    "body": [
+      "beforeUpdate () {",
+        "\t$0",
+      "},"
+    ]
+  },
+  "lifecycle.updated": {
+    "prefix": "options.lifecycle.updated",
+    "body": [
+      "updated () {",
+        "\t$0",
+      "},"
+    ]
+  },
+  "lifecycle.activated": {
+    "prefix": "options.lifecycle.activated",
+    "body": [
+      "activated () {",
+        "\t$0",
+      "},"
+    ]
+  },
+  "lifecycle.deactivated": {
+    "prefix": "options.lifecycle.deactivated",
+    "body": [
+      "deactivated () {",
+        "\t$0",
+      "},"
+    ]
+  },
+  "lifecycle.beforeDestroy": {
+    "prefix": "options.lifecycle.beforeDestroy",
+    "body": [
+      "beforeDestroy () {",
+        "\t$0",
+      "},"
+    ]
+  },
+  "lifecycle.destroyed": {
+    "prefix": "options.lifecycle.destroyed",
+    "body": [
+      "destroyed () {",
+        "\t$0",
+      "},"
+    ]
+  },
+
+
+  // Options / Assets
+
+  "directives": {
+    "prefix": "options.assets.directives",
+    "body": [
+      "directives: {",
+        "\t$1",
+      "},"
+    ]
+  },
+  "filters": {
+    "prefix": "options.assets.filters",
+    "body": [
+      "filters: {",
+        "\t$1",
+      "},"
+    ]
+  },
+  "components": {
+    "prefix": "options.assets.components",
+    "body": [
+      "components: {",
+        "\t$1",
+      "},"
+    ]
+  },
+
+
+  // Options / Misc
+
+  "mixins": {
+    "prefix": "options.misc.mixins",
+    "body": [
+      "mixins: [",
+        "\t// ...",
+      "],"
+    ]
+  },
+  "name": {
+    "prefix": "options.misc.name",
+    "body": "name: '${String}',"
+  },
+  "extends": {
+    "prefix": "options.misc.extends",
+    "body": "extends: ${Component},"
+  },
+  "delimiters": {
+    "prefix": "options.misc.delimiters",
+    "body": "delimiters: ['${open}', '${close}'],"
+  },
+  "functional": {
+    "prefix": "options.misc.functional",
+    "body": "functional: ${Boolean},"
+  },
+
+
+  // Instance Properties
+
+	"$data": {
+		"prefix": "this.$data",
+		"body": "this.$data"
 	},
-	"vue-cdn": {
-		"prefix": "vue-cdn",
-		"body": "<script src=\"http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.13/vue.min.js\"></script>\n",
-		"description": "",
-		"scope": "text.html"
+	"$el": {
+		"prefix": "this.$el",
+		"body": "this.$el"
 	},
-	"delete": {
-		"prefix": "delete",
-		"body": "${1:vm}.$delete(${2:key})\n",
-		"description": "",
-		"scope": "source.js"
+	"$options": {
+		"prefix": "this.$options",
+		"body": "this.$options"
 	},
-	"eval": {
-		"prefix": "eval",
-		"body": "${1:vm}.$eval(${2:msg} | ${3:uppercase})\n",
-		"description": "",
-		"scope": "source.js"
+	"$parent": {
+		"prefix": "this.$parent",
+		"body": "this.$parent"
 	},
-	"set": {
-		"prefix": "set",
-		"body": "${1:vm}.$set(${2:expression}, ${3:value})\n",
-		"description": "",
-		"scope": "source.js"
+	"$root": {
+		"prefix": "this.$root",
+		"body": "this.$root"
 	},
-	"get": {
-		"prefix": "get",
-		"body": "${1:vm}.$get(${expression})\n",
-		"description": "",
-		"scope": "source.js"
+	"$children": {
+		"prefix": "this.$children",
+		"body": "this.$children"
 	},
-	"ipo": {
-		"prefix": "ipo",
-		"body": "${1:vm}.$interpolate(${2:templateString})\n",
-		"description": "",
-		"scope": "source.js"
+	"$slots": {
+		"prefix": "this.$slots",
+		"body": "this.$slots"
 	},
-	"log": {
-		"prefix": "log",
-		"body": "${1:vm}.$log(${2:[keyPath-optional]})\n",
-		"description": "",
-		"scope": "source.js"
+	"$scopedSlots": {
+		"prefix": "this.$scopedSlots",
+		"body": "this.$scopedSlots"
 	},
-	"v": {
-		"prefix": "v",
-		"body": ": {\n\t${1://content\\}\n\\}\n",
-		"description": "",
-		"scope": "source.js"
+	"$refs": {
+		"prefix": "this.$refs",
+		"body": "this.$refs"
 	},
-	"vue-config": {
-		"prefix": "vue-config",
-		"body": "{\n\tdebug: ${1:true},\n\tstrict: ${2:false},\n\tprefix: ${3:'v-'},\n\tdelimiters: ${4:['{{', '\\}\\}']},\n\tsilent: ${5:false},\n\tinterpolate: ${6:true},\n\tasync: ${7:true},\n\tproto: ${8:true}\n\\}\n",
-		"description": "",
-		"scope": "source.js"
+	"$isServer": {
+		"prefix": "this.$isServer",
+		"body": "this.$isServer"
 	},
-	"vue-dir": {
-		"prefix": "vue-dir",
-		"body": "Vue.directive('${1:my-directive}',\n\tbind: function () {\n\t\t${2://content}\n\t\\},\n\tupdate: function (newValue, oldValue) {\n\t\t${3://content}\n\t\\},\n\tunbind: function () {\n\t\t${3://content}\n\t\\}\n\\})\n",
-		"description": "",
-		"scope": "source.js"
+
+
+  // Instance Methods / Data
+
+	"$watch": {
+		"prefix": "this.$watch",
+		"body": "this.$watch(${1:'keypath'}, (value, previousValue) => {\n\t${3://...} \n}${2:/*, \\{ immediate: true, deep: true \\}*/})\n$0"
 	},
-	"vue-extend": {
-		"prefix": "vue-extend",
-		"body": "var ${1:Profile} = Vue.extend\n\ttemplate: ${2:'<p>{{firstName\\}\\} {{lastName\\}\\} aka {{alias\\}\\}</p>'}\n\\})\n",
-		"description": "",
-		"scope": "source.js"
+	"$set": {
+		"prefix": "this.$set",
+		"body": "this.$set(${this.someObject}, ${'someKey'}, ${someValue})\n$0"
 	},
-	"vue-filter": {
-		"prefix": "vue-filter",
-		"body": "Vue.filter('${1:my-filter}', function (${2:value}) {\n\t${3://content}\n\\})\n",
-		"description": "",
-		"scope": "source.js"
+	"$delete": {
+		"prefix": "this.$delete",
+		"body": "this.$delete(${this.someObject}, ${'someKey'})\n$0"
 	},
-	"vue": {
-		"prefix": "vue",
-		"body": "var ${1:vm} = new Vue({\n\tel: \"#${2:replace}\"\n\\})\n",
-		"description": "",
-		"scope": "source.js"
+
+
+  // Instance Methods / Events
+
+  "$on": {
+		"prefix": "this.$on",
+		"body": "this.$on(${'eventName'}, (${/* args */}) => {\n\t${// ...}\n})\n$0"
 	},
-	"wat": {
-		"prefix": "wat",
-		"body": "${1:vm}.$watch('${2:someObject}', function (${3:newVal}, ${4:oldVal}) {\n\t${5://content}\n\\})\n",
-		"description": "",
-		"scope": "source.js"
-	}
+	"$once": {
+		"prefix": "this.$once",
+		"body": "this.$once(${'eventName'}, (${/* args */}) => {\n\t${// ...}\n})\n$0"
+	},
+	"$off": {
+		"prefix": "this.$off",
+		"body": "this.$off(${'eventName'})\n$0"
+	},
+	"$emit": {
+		"prefix": "this.$emit",
+		"body": "this.$emit(${'eventName'}${, ${/*..args*/}})\n$0"
+	},
+
+
+  // Instance Methods / Lifecycle
+
+	"$mount": {
+		"prefix": "$mount",
+		"body": "$mount(${'#el'})\n$0"
+	},
+	"$forceUpdate": {
+		"prefix": "this.$forceUpdate",
+		"body": "this.$forceUpdate()\n$0"
+	},
+	"$nextTick": {
+		"prefix": "this.$nextTick",
+		"body": "this.$nextTick(() => {\n\t${// ...}\n})\n$0"
+	},
+	"$destroy": {
+		"prefix": "this.$destroy",
+		"body": "this.$destroy()\n$0"
+	},
+
+
+  // Directives
+
+  "v-text": {
+    "prefix": "v-text",
+    "body": "v-text=\"${someString}\""
+  },
+  "v-html": {
+    "prefix": "v-html",
+    "body": "v-html=\"${someString}\""
+  },
+  "v-show": {
+    "prefix": "v-show",
+    "body": "v-show=\"${someBoolean}\""
+  },
+  "v-if": {
+    "prefix": "v-if",
+    "body": "v-if=\"${someBoolean}\""
+  },
+  "v-else": {
+    "prefix": "v-else",
+    "body": "v-else"
+  },
+  "v-for": {
+    "prefix": "v-for",
+    "body": "v-for=\"${item} in ${item}s\"$0"
+  },
+  "v-on": {
+    "prefix": "v-on",
+    "body": "@${event}${.modifiers?}=\"${method}\"$0"
+  },
+  "v-bind": {
+    "prefix": "v-bind",
+    "body": ":${attrOrProp}${.modifiers?}=\"${someValue}\"$0"
+  },
+  "v-model": {
+    "prefix": "v-model",
+    "body": "v-model=\"${...}\"$0"
+  },
+  "v-pre": {
+    "prefix": "v-pre",
+    "body": "v-pre$0"
+  },
+  "v-cloak": {
+    "prefix": "v-cloak",
+    "body": "v-cloak$0"
+  },
+  "v-once": {
+    "prefix": "v-once",
+    "body": "v-once$0"
+  },
+
+
+  // Special Attributes
+
+  "key": {
+    "prefix": "key",
+    "body": ":key=\"${keyPath}\"$0"
+  },
+  "ref": {
+    "prefix": "ref",
+    "body": "ref=\"${id}\"$0"
+  },
+  "slot attribute": {
+    "prefix": "slot",
+    "body": "slot=\"${name}\"$0"
+  },
+
+
+  // Built-In Components
+
+  "component": {
+    "prefix": "<component",
+    "body": [
+      "<component :is=\"${componentId}\"${ inline-template}>",
+        "\t$1",
+      "</component>"
+    ]
+  },
+  "transition": {
+    "prefix": "<transition",
+    "body": [
+      "<transition name=\"${transitionName}\"${ mode=\"${in-out|out-in}\"}${ appear}>",
+        "\t${1:<!-- https://vuejs.org/v2/api/#transition -->}",
+      "</transition>"
+    ]
+  },
+  "transition-group": {
+    "prefix": "<transition-group",
+    "body": [
+      "<transition-group name=\"${transitionName}\" tag=\"${ul}\"${ appear}>",
+        "\t${1:<!-- https://vuejs.org/v2/api/#transition-group -->}",
+      "</transition-group>"
+    ]
+  },
+  "keep-alive": {
+    "prefix": "<keep-alive",
+    "body": [
+      "<keep-alive>",
+        "\t$1",
+      "</keep-alive>"
+    ]
+  },
+  "slot": {
+    "prefix": "<slot",
+    "body": [
+      "<slot name=\"${name}\">",
+        "\t$1",
+      "</slot>"
+    ]
+  },
+
+
+  // Misc
+
+  // Vue File Boilerplate
+	".vue": {
+		"prefix": ".vue",
+		"body": [
+      "<template>",
+      "",
+      "</template>",
+      "",
+      "<script>",
+      "export default {",
+        "\tname: '${ComponentName}',",
+        "\t$0",
+      "}",
+      "</script>",
+      "",
+      "<style${ lang=\"${lang}\"}${ scoped}>",
+      "",
+      "</style>"
+    ] 
+	},
+
+  // Property
+  "Complex Property": {
+    "prefix": "prop",
+    "body": [
+      "${propName}: {",
+        "\ttype: ${Type},",
+        "\tdefault: ${'Bob Belcher'},",
+        "\trequired: ${true},",
+        "\tvalidator (value) {",
+          "\t\t// return ...",
+        "\t},",
+      "},"
+    ]
+  },
+  "Simple Property": {
+    "prefix": "prop",
+    "body": "${propName}: ${Number},\n$0"
+  },
+
+  // Computed
+  "Computed": {
+    "prefix": "computed",
+    "body": [
+      "${name} () {",
+        "\t$1",
+      "},"
+    ]
+  },
+  "Computed (with setter)": {
+    "prefix": "computed",
+    "body": [
+      "${1:name}: {",
+        "\tget () {",
+          "\t\t$2",
+        "\t},",
+        "\tset (${value}) {",
+          "\t\t$3",
+        "\t}",
+      "},"
+    ]
+  }
 }
