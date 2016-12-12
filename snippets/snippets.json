@@ -44,7 +44,7 @@
   "Vue.directive": {
     "prefix": "Vue.directive",
     "body": "Vue.directive(${'directiveName'}, {\n\tbind (el, binding) {}, \n\tinserted (el, binding) {}, \n\tupdated (el, binding) {}, \n\tcomponentUpdated (el, binding) {}, \n\tunbind (el, binding) {},\n})\n$0",
-		"description": "https://vuejs.org/v2/api/#Vue-directive"
+    "description": "https://vuejs.org/v2/api/#Vue-directive"
   },
   "Vue.filter": {
     "prefix": "Vue.filter",
@@ -311,102 +311,102 @@
 
   // Instance Properties
 
-	"$data": {
-		"prefix": "this.$data",
-		"body": "this.$data"
-	},
-	"$el": {
-		"prefix": "this.$el",
-		"body": "this.$el"
-	},
-	"$options": {
-		"prefix": "this.$options",
-		"body": "this.$options"
-	},
-	"$parent": {
-		"prefix": "this.$parent",
-		"body": "this.$parent"
-	},
-	"$root": {
-		"prefix": "this.$root",
-		"body": "this.$root"
-	},
-	"$children": {
-		"prefix": "this.$children",
-		"body": "this.$children"
-	},
-	"$slots": {
-		"prefix": "this.$slots",
-		"body": "this.$slots"
-	},
-	"$scopedSlots": {
-		"prefix": "this.$scopedSlots",
-		"body": "this.$scopedSlots"
-	},
-	"$refs": {
-		"prefix": "this.$refs",
-		"body": "this.$refs"
-	},
-	"$isServer": {
-		"prefix": "this.$isServer",
-		"body": "this.$isServer"
-	},
+  "$data": {
+    "prefix": "this.$data",
+    "body": "this.$data"
+  },
+  "$el": {
+    "prefix": "this.$el",
+    "body": "this.$el"
+  },
+  "$options": {
+    "prefix": "this.$options",
+    "body": "this.$options"
+  },
+  "$parent": {
+    "prefix": "this.$parent",
+    "body": "this.$parent"
+  },
+  "$root": {
+    "prefix": "this.$root",
+    "body": "this.$root"
+  },
+  "$children": {
+    "prefix": "this.$children",
+    "body": "this.$children"
+  },
+  "$slots": {
+    "prefix": "this.$slots",
+    "body": "this.$slots"
+  },
+  "$scopedSlots": {
+    "prefix": "this.$scopedSlots",
+    "body": "this.$scopedSlots"
+  },
+  "$refs": {
+    "prefix": "this.$refs",
+    "body": "this.$refs"
+  },
+  "$isServer": {
+    "prefix": "this.$isServer",
+    "body": "this.$isServer"
+  },
 
 
   // Instance Methods / Data
 
-	"$watch": {
-		"prefix": "this.$watch",
-		"body": "this.$watch(${1:'keypath'}, (value, previousValue) => {\n\t${3://...} \n}${2:/*, \\{ immediate: true, deep: true \\}*/})\n$0"
-	},
-	"$set": {
-		"prefix": "this.$set",
-		"body": "this.$set(${this.someObject}, ${'someKey'}, ${someValue})\n$0"
-	},
-	"$delete": {
-		"prefix": "this.$delete",
-		"body": "this.$delete(${this.someObject}, ${'someKey'})\n$0"
-	},
+  "$watch": {
+    "prefix": "this.$watch",
+    "body": "this.$watch(${1:'keypath'}, (value, previousValue) => {\n\t${3://...} \n}${2:/*, \\{ immediate: true, deep: true \\}*/})\n$0"
+  },
+  "$set": {
+    "prefix": "this.$set",
+    "body": "this.$set(${this.someObject}, ${'someKey'}, ${someValue})\n$0"
+  },
+  "$delete": {
+    "prefix": "this.$delete",
+    "body": "this.$delete(${this.someObject}, ${'someKey'})\n$0"
+  },
 
 
   // Instance Methods / Events
 
   "$on": {
-		"prefix": "this.$on",
-		"body": "this.$on(${'eventName'}, (${/* args */}) => {\n\t${// ...}\n})\n$0"
-	},
-	"$once": {
-		"prefix": "this.$once",
-		"body": "this.$once(${'eventName'}, (${/* args */}) => {\n\t${// ...}\n})\n$0"
-	},
-	"$off": {
-		"prefix": "this.$off",
-		"body": "this.$off(${'eventName'})\n$0"
-	},
-	"$emit": {
-		"prefix": "this.$emit",
-		"body": "this.$emit(${'eventName'}${, ${/*..args*/}})\n$0"
-	},
+    "prefix": "this.$on",
+    "body": "this.$on(${'eventName'}, (${/* args */}) => {\n\t${// ...}\n})\n$0"
+  },
+  "$once": {
+    "prefix": "this.$once",
+    "body": "this.$once(${'eventName'}, (${/* args */}) => {\n\t${// ...}\n})\n$0"
+  },
+  "$off": {
+    "prefix": "this.$off",
+    "body": "this.$off(${'eventName'})\n$0"
+  },
+  "$emit": {
+    "prefix": "this.$emit",
+    "body": "this.$emit(${'eventName'}${, ${/*..args*/}})\n$0"
+  },
 
 
   // Instance Methods / Lifecycle
 
-	"$mount": {
-		"prefix": "$mount",
-		"body": "$mount(${'#el'})\n$0"
-	},
-	"$forceUpdate": {
-		"prefix": "this.$forceUpdate",
-		"body": "this.$forceUpdate()\n$0"
-	},
-	"$nextTick": {
-		"prefix": "this.$nextTick",
-		"body": "this.$nextTick(() => {\n\t${// ...}\n})\n$0"
-	},
-	"$destroy": {
-		"prefix": "this.$destroy",
-		"body": "this.$destroy()\n$0"
-	},
+  "$mount": {
+    "prefix": "$mount",
+    "body": "$mount(${'#el'})\n$0"
+  },
+  "$forceUpdate": {
+    "prefix": "this.$forceUpdate",
+    "body": "this.$forceUpdate()\n$0"
+  },
+  "$nextTick": {
+    "prefix": "this.$nextTick",
+    "body": "this.$nextTick(() => {\n\t${// ...}\n})\n$0"
+  },
+  "$destroy": {
+    "prefix": "this.$destroy",
+    "body": "this.$destroy()\n$0"
+  },
 
 
   // Directives
@@ -524,9 +524,9 @@
   // Misc
 
   // Vue File Boilerplate
-	".vue": {
-		"prefix": ".vue",
-		"body": [
+  ".vue": {
+    "prefix": ".vue",
+    "body": [
       "<template>",
       "",
       "</template>",
@@ -542,7 +542,7 @@
       "",
       "</style>"
     ] 
-	},
+  },
 
   // Property
   "Complex Property": {
