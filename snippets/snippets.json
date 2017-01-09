@@ -11,15 +11,27 @@
   },
   "Vue.config.errorHandler": {
     "prefix": "Vue.config.errorHandler",
-    "body": "Vue.config.errorHandler = (err, vm) => {\n\t${console.log(err, vm)}\n}"
+    "body": [
+      "Vue.config.errorHandler = (err, vm) => {",
+        "\t${console.log(err, vm)}",
+      "}\n$0"
+    ]
   },
   "Vue.config.ignoredElements": {
     "prefix": "Vue.config.ignoredElements",
-    "body": "Vue.config.ignoredElements = [\n\t'web-component-1'\n\t'web-component-2'\n]\n$0"
+    "body": [
+      "Vue.config.ignoredElements = [",
+        "\t'${web-component-1}',",
+      "]\n$0"
+    ]
   },
   "Vue.config.keyCodes": {
     "prefix": "Vue.config.keyCodes",
-    "body": "Vue.config.keyCodes = {\n\t${1:up: [38, 87]}\n}\n$0"
+    "body": [
+      "Vue.config.keyCodes = {",
+        "\t${1:up: [38, 87]},",
+      "}\n$0"
+    ]
   },
 
 
@@ -50,7 +62,7 @@
         "\tupdated (el, binding) {},",
         "\tcomponentUpdated (el, binding) {},",
         "\tunbind (el, binding) {},",
-      "})\n$0",
+      "})\n$0"
     ],
     "description": "https://vuejs.org/v2/api/#Vue-directive"
   },
@@ -58,7 +70,7 @@
     "prefix": "Vue.filter",
     "body": [
       "Vue.filter(${'filterName'}, (value) => {",
-        "\treturn value + '!'",
+        "\treturn ${'...'}",
       "})\n$0"
     ]
   },
